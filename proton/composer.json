@@ -1,0 +1,5 @@
+{
+    "require": {
+        "alexbilbie/proton": "^1.4"
+    }
+}
