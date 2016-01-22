@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Commands - Equip Framework</title>
+  
+
+  <link rel="shortcut icon" href="../img/favicon.ico">
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../css/highlight.css">
+  <link href="https://media.readthedocs.org/css/badge_only.css" rel="stylesheet">
+  <link href="https://media.readthedocs.org/css/readthedocs-doc-embed.css" rel="stylesheet">
+
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Commands";
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js"></script>
+  <script src="../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../js/highlight.pack.js"></script>
+  <script src="../js/theme.js"></script> 
+  <script src="../readthedocs-data.js"></script>
+  <script src="../readthedocs-dynamic-include.js"></script>
+  <script src="https://media.readthedocs.org/javascript/readthedocs-doc-embed.js"></script>
+
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Equip Framework</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        <ul class="current">
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="..">Framework</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../auth/">Authentication</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../data/">Data</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 current">
+        <a class="current" href="./">Commands</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#commands">Commands</a></li>
+                
+                    <li><a class="toctree-l4" href="#components">Components</a></li>
+                
+                    <li><a class="toctree-l4" href="#basic-example">Basic Example</a></li>
+                
+            
+            </ul>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../session/">Session</a>
+        
+    </li>
+<li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Equip Framework</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Commands</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="commands">Commands</h1>
+<p><a href="https://github.com/equip/command">equip/command</a> is an optional library used for implementing <a href="https://sourcemaking.com/design_patterns/command">commands</a> in Equip.</p>
+<h2 id="components">Components</h2>
+<p><a href="https://github.com/equip/command/blob/master/src/CommandInterface.php"><code>CommandInterface</code></a> is an interface implemented by all command classes. It provides an <a href="https://en.wikipedia.org/wiki/Immutable_object">immutable</a> structure containing command options that can ultimately be executed.</p>
+<p>Many of the methods of <a href="https://github.com/equip/command/blob/master/src/CommandInterface.php"><code>CommandInterface</code></a> are implemented in <a href="https://github.com/equip/command/blob/master/src/AbstractCommand.php"><code>AbstractCommand</code></a>, which serves as a base class for command class implementations.</p>
+<h3 id="getting-options">Getting Options</h3>
+<p>The <code>options()</code> method can be used at any time to obtain an associative array of the options held by a command instance.</p>
+<pre><code class="php">$options = $command-&gt;options();
+</code></pre>
+
+<h3 id="changing-options">Changing Options</h3>
+<p>Using the <code>withOptions()</code> method, it's possible to obtain a new command instance from an existing one with its options completely replaced.</p>
+<pre><code class="php">$new_command = $old_command-&gt;withOptions([ /* ... */ ]);
+</code></pre>
+
+<p>The <code>addOptions()</code> method functions in a similar fashion except that it merges the provided options with those of the existing command instance rather than replacing them.</p>
+<pre><code class="php">$new_options = [ /* ... */ ];
+$new_command = $old_command-&gt;addOptions($new_options);
+// $new_command now contains options from both the return value of
+// $old_command-&gt;options() and $new_options
+</code></pre>
+
+<p>Note that, in the above example, if a key exists in both <code>$old_command-&gt;options()</code> and <code>$new_options</code>, the value from <code>$new_options</code> would be used in <code>$new_command</code>.</p>
+<h3 id="checking-for-options">Checking for Options</h3>
+<p>If you need to check for a value without retrieving its value, use the <code>hasOption()</code> method.</p>
+<pre><code class="php">if ($command-&gt;hasOption('option_name')) {
+    // ...
+}
+</code></pre>
+
+<p>The <code>requiredOptions()</code> method is intended to be used internally by the <code>options()</code> method to confirm that all required options are present. More specifically, <code>requiredOptions()</code> returns an array of strings and <code>options()</code> checks that each value from that array exists as a key in the options of the command instance. If not, <code>options()</code> will throw an instance of <a href="https://github.com/equip/command/blob/master/src/CommandException.php"><code>CommandException</code></a>.</p>
+<h3 id="executing-commands">Executing Commands</h3>
+<p>Once a command class has been instantiated and option values provided in whatever way is appropriate for that particular command class, the <code>execute()</code> method can be invoked to execute the command. <code>execute()</code> may return a value if it's appropriate to the command class implementation.</p>
+<pre><code class="php">$result = $command-&gt;execute();
+</code></pre>
+
+<h2 id="basic-example">Basic Example</h2>
+<p>Here's an example of a command class.</p>
+<pre><code class="php">use Equip\Command\AbstractCommand;
+
+class FizzbuzzCommand extends AbstractCommand
+{
+    public function requiredOptions()
+    {
+        return [
+            'quantity',
+        ];
+    }
+
+    public function execute()
+    {
+        $options = $this-&gt;options();
+        $quantity = $options['quantity'];
+
+        // ...
+    }
+}
+</code></pre>
+
+<p>Command classes are tended to be injected (using <a href="http://equipframework.readthedocs.org/en/latest/#dependencies">Auryn</a>) into and receive options from other classes. Here's an example of a domain class that does this.</p>
+<pre><code class="php">use Equip\Adr\DomainInterface;
+
+class MyDomain implements DomainInterface
+{
+    private $command;
+
+    public function __construct(FizzbuzzCommand $command)
+    {
+        $this-&gt;command = $command;
+    }
+
+    public function __invoke(array $input)
+    {
+        $options = [];
+
+        // populate $options using $input
+
+        $result = $this-&gt;command
+            -&gt;withOptions($options) // or addOptions($options)
+            -&gt;execute();
+
+        // populate and return payload like normal
+    }
+}
+</code></pre>
+
+<p>Command classes can handle assigning any applicable default option values internally. Other classes can add to those defaults using the command <code>addOptions()</code> method or replace them entirely using the command <code>withOptions()</code> method.</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../session/" class="btn btn-neutral float-right" title="Session"/>Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../data/" class="btn btn-neutral" title="Data"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+	  
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> Read the Docs</span>
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+    </div>
+  </div>
+
+</body>
+</html>

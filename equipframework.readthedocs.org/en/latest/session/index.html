@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Session - Equip Framework</title>
+  
+
+  <link rel="shortcut icon" href="../img/favicon.ico">
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../css/highlight.css">
+  <link href="https://media.readthedocs.org/css/badge_only.css" rel="stylesheet">
+  <link href="https://media.readthedocs.org/css/readthedocs-doc-embed.css" rel="stylesheet">
+
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Session";
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js"></script>
+  <script src="../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../js/highlight.pack.js"></script>
+  <script src="../js/theme.js"></script> 
+  <script src="../readthedocs-data.js"></script>
+  <script src="../readthedocs-dynamic-include.js"></script>
+  <script src="https://media.readthedocs.org/javascript/readthedocs-doc-embed.js"></script>
+
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Equip Framework</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        <ul class="current">
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="..">Framework</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../auth/">Authentication</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../data/">Data</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../commands/">Commands</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 current">
+        <a class="current" href="./">Session</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#session">Session</a></li>
+                
+                    <li><a class="toctree-l4" href="#configuration">Configuration</a></li>
+                
+                    <li><a class="toctree-l4" href="#basic-example">Basic Example</a></li>
+                
+                    <li><a class="toctree-l4" href="#usage">Usage</a></li>
+                
+            
+            </ul>
+        
+    </li>
+<li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Equip Framework</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Session</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="session">Session</h1>
+<p><a href="https://github.com/equip/session">equip/session</a> is an optional library for using sessions in Equip applications.</p>
+<p>The benefit of using session objects instead of a global variable is primarily in testing, where the session object can be mocked and operations verified. Using session objects also makes it much easier to switch to a distributed session storage as your application scales.</p>
+<h2 id="configuration">Configuration</h2>
+<p>To use the <a href="https://github.com/equip/session/blob/master/src/NativeSession.php">native session</a> implementation the <a href="https://github.com/equip/session/blob/master/src/Configuration/SessionConfiguration.php">configuration</a> must be enabled in the <a href="https://equipframework.readthedocs.org/en/latest/#bootstrap">application bootstrap</a>:</p>
+<pre><code class="php">Equip\Application::build()
+-&gt;setConfiguration([
+    // ...
+    Equip\Configuration\SessionConfiguration::class,
+])
+// ...
+</code></pre>
+
+<h2 id="basic-example">Basic Example</h2>
+<pre><code class="php">namespace Acme\Domain;
+
+use Equip\SessionInterface;
+use Equip\Adr\DomainInterface;
+
+class WidgetDomain implements DomainInterface
+{
+    /**
+     * @var SessionInterface
+     */
+    private $session;
+
+    public function __construct(
+        SessionInterface $session
+    ) {
+        $this-&gt;session = $session;
+    }
+
+    public function __invoke(array $input)
+    {
+        // Do things with $this-&gt;session, etc...
+    }
+}
+</code></pre>
+
+<h2 id="usage">Usage</h2>
+<p>The <a href="https://github.com/equip/session/blob/master/src/SessionInterface.php">session object</a> can be modified using methods or <a href="http://php.net/arrayaccess">with array operations</a>:</p>
+<pre><code class="php">// Set a value using object methods:
+$session-&gt;set('foo', 'bar');
+// Or using array operations:
+$session['foo'] = 'bar';
+
+// Get a value:
+$foo = $session-&gt;get('foo');
+// Or:
+$foo = $session['foo'];
+
+// Check for a value:
+if ($session-&gt;has('foo')) { /* ... */ }
+// Or:
+if (isset($session['foo'])) { /* ... */ }
+
+// Delete a value
+$session-&gt;del('foo');
+// Or:
+unset($session['foo']);
+</code></pre>
+
+<p>The entire session can also be cleared at any time:</p>
+<pre><code class="php">$session-&gt;clear();
+</code></pre>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="../commands/" class="btn btn-neutral" title="Commands"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+	  
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> Read the Docs</span>
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+    </div>
+  </div>
+
+</body>
+</html>

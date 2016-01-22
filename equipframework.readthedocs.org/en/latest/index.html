@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Equip Framework</title>
+  
+
+  <link rel="shortcut icon" href="./img/favicon.ico">
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="./css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="./css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="./css/highlight.css">
+  <link href="https://media.readthedocs.org/css/badge_only.css" rel="stylesheet">
+  <link href="https://media.readthedocs.org/css/readthedocs-doc-embed.css" rel="stylesheet">
+
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "None";
+  </script>
+  
+  <script src="./js/jquery-2.1.1.min.js"></script>
+  <script src="./js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="./js/highlight.pack.js"></script>
+  <script src="./js/theme.js"></script> 
+  <script src="./readthedocs-data.js"></script>
+  <script src="./readthedocs-dynamic-include.js"></script>
+  <script src="https://media.readthedocs.org/javascript/readthedocs-doc-embed.js"></script>
+
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="." class="icon icon-home"> Equip Framework</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        <ul class="current">
+          
+            <li>
+    <li class="toctree-l1 current">
+        <a class="current" href=".">Framework</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#equip">Equip</a></li>
+                
+                    <li><a class="toctree-l4" href="#installation">Installation</a></li>
+                
+                    <li><a class="toctree-l4" href="#dependencies">Dependencies</a></li>
+                
+                    <li><a class="toctree-l4" href="#configuration">Configuration</a></li>
+                
+                    <li><a class="toctree-l4" href="#bootstrap">Bootstrap</a></li>
+                
+                    <li><a class="toctree-l4" href="#domains">Domains</a></li>
+                
+                    <li><a class="toctree-l4" href="#responders">Responders</a></li>
+                
+            
+            </ul>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="auth/">Authentication</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="data/">Data</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="commands/">Commands</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="session/">Session</a>
+        
+    </li>
+<li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href=".">Equip Framework</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Framework</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="equip">Equip</h1>
+<p>Welcome! Equip is a tiny and powerful PHP micro-framework created and maintained by the engineering team at <a href="http://wheniwork.com/">When I Work</a>. It attempts to comply with <a href="http://www.php-fig.org/psr/psr-1/">PSR-1</a>, <a href="http://www.php-fig.org/psr/psr-2/">PSR-2</a>, <a href="http://www.php-fig.org/psr/psr-4/">PSR-4</a> and <a href="http://www.php-fig.org/psr/psr-7/">PSR-7</a>. It is based on the <a href="https://github.com/pmjones/adr">ADR</a> pattern.</p>
+<h2 id="installation">Installation</h2>
+<p>To install Equip, <a href="https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies">use Composer</a>.</p>
+<pre><code class="bash">composer require equip/framework
+</code></pre>
+
+<p>Subsequent examples will assume your project has a directory structure similar to this:</p>
+<pre><code>.
+├── composer.json
+├── composer.lock
+├── src
+├── vendor
+└── web
+    └── index.php
+</code></pre>
+
+<h2 id="dependencies">Dependencies</h2>
+<p>The majority of the code written on top of Equip is located in <a href="https://github.com/pmjones/adr#model-vs-domain">domain</a> classes and others <a href="https://en.wikipedia.org/wiki/Object_composition">composed</a> by them. Additional classes can be used to customize other aspects of the application including <a href="#responders">responders</a>, <a href="#middleware">middleware</a>, and so forth. One commonality that all of these classes have is that they generally require external dependencies in order to serve their purpose.</p>
+<p>In order to handle instantiating and wiring together classes on which your code is dependent, a <a href="https://en.wikipedia.org/wiki/Dependency_injection">dependency injection</a> container (DIC) is used. In this case of Equip, this DIC is <a href="https://github.com/rdlowrey/Auryn">Auryn</a>, specifically its <a href="https://github.com/rdlowrey/auryn/blob/master/lib/Injector.php"><code>Injector</code></a> class. Auryn is different from most other PHP DIC implementations in that it uses parameter types and names, rather than separate user-assigned semantic names, to identify individual dependencies.</p>
+<p>When a dependency is needed, Equip internally calls the <code>make()</code> method of the Auryn <a href="https://github.com/rdlowrey/auryn/blob/master/lib/Injector.php"><code>Injector</code></a> class. This method uses reflection to inspect types and names of constructor parameters, recursively resolve all dependencies corresponding to those parameters, instantiate the class with those dependencies, and return the configured instance.</p>
+<p>In order to have Auryn handle passing the dependencies into a class written for your project, such as a domain class, all you need to do is use appropriate <a href="http://php.net/manual/en/functions.arguments.php#functions.arguments.type-declaration">typehints</a> when declaring its constructor parameters.</p>
+<p>Subsequent subsections of this section review other common dependency injection use cases. For additional information, refer to the <a href="https://github.com/rdlowrey/Auryn#auryn-">Auryn documentation</a>.</p>
+<h3 id="subclasses-and-interfaces">Subclasses and Interfaces</h3>
+<p>Two common use cases with dependencies involve <a href="https://github.com/rdlowrey/Auryn#type-hint-aliasing">type aliasing</a> using the <code>alias()</code> method of the injector:</p>
+<ol>
+<li>Using an instance of a subclass anywhere a typehint against a superclass is used; or</li>
+<li>Using an instance of a class implementing an interface anywhere a typehint against that interface is used.</li>
+</ol>
+<pre><code class="php">class SuperClassName { }
+class SubClassName extends SuperClassName { }
+$injector-&gt;alias('SuperClassName', 'SubClassName');
+$instance = $injector-&gt;make('SuperClassName');
+echo get_class($instance); // SubClassName
+
+interface InterfaceName { }
+class ClassImplementingInterfaceName implements InterfaceName { }
+$injector-&gt;alias('InterfaceName', 'ClassImplementingInterfaceName');
+$instance = $injector-&gt;make('InterfaceName');
+echo get_class($instance); // ClassImplementingInterfaceName
+</code></pre>
+
+<h3 id="scalar-parameters">Scalar Parameters</h3>
+<p>Type aliasing doesn't apply to scalar parameters. Values for these parameters can be specified using an <a href="https://github.com/rdlowrey/Auryn#using-existing-instances-in-injection-definitions">injection definition</a> via the <code>define()</code> method of the injector:</p>
+<pre><code class="php">$injector-&gt;define('ClassName', [':scalarParameter' =&gt; 'scalarValue']);
+</code></pre>
+
+<p>Note that the parameter name is prefixed with a colon to indicate that the corresponding value should be used as-is. When the colon prefix is excluded, the specified value is assumed to be an inline specification of a class to be aliased to a superclass or interface parameter for that specific dependency.</p>
+<h3 id="delegation">Delegation</h3>
+<p>In some cases, instantiation of a class is complex enough that Auryn can't handle it alone. An example of this is when values passed to the class constructor must be derived from configuration (e.g. programmatically constructing the DSN for a PDO connection from its components) as opposed to taken directly from configuration (e.g. making the entire DSN a configuration setting unto itself).</p>
+<p>In cases such as these, instantiation can be <a href="https://github.com/rdlowrey/Auryn#instantiation-delegates">delegated</a> to <a href="http://php.net/manual/en/language.types.callable.php">callbacks</a> using the <code>delegate()</code> method of the injector, where the callback is expected to return the instance:</p>
+<pre><code class="php">$injector-&gt;delegate('ClassOrInterfaceName', function() {
+    // ...
+    return new ClassOrClassImplementingInterfaceName;
+});
+</code></pre>
+
+<p>Note that such a callback can be defined to receive typehinted parameters. Just as with constructor parameters, Auryn will <a href="https://github.com/rdlowrey/auryn#injecting-for-execution">provision instances of object parameters</a> and pass them in when it invokes the callback.</p>
+<h3 id="preparation">Preparation</h3>
+<p>If an instance needs to have logic performed on it after it's created, such as calling a setter method to inject an optional dependency, the injector <a href="https://github.com/rdlowrey/auryn#prepares-and-setter-injection"><code>prepare()</code> method</a> can be used to specify a callback for this. As with delegate callbacks, Auryn will handle provisioning and passing any typehinted objects to this callback.</p>
+<pre><code class="php">$injector-&gt;prepare('ClassName', function(ClassName $instance) {
+    $instance-&gt;doThingNotDoneInTheConstructor();
+    // ...
+});
+</code></pre>
+
+<h2 id="configuration">Configuration</h2>
+<p>In Equip, configuration of the injector is encapsulated in classes implementing <a href="https://github.com/equip/framework/blob/master/src/Configuration/ConfigurationInterface.php"><code>ConfigurationInterface</code></a>. This interface has a single method <code>apply()</code> that applies some configuration to a given Auryn <code>Injector</code> instance. The purpose of this is to allow for clean <a href="https://en.wikipedia.org/wiki/Separation_of_concerns">separation of concerns</a> and <a href="https://en.wikipedia.org/wiki/Reusability">reusability</a> of configuration logic.</p>
+<p>To facilitate ease of reuse for groupings of configuration, Equip provides a <a href="https://github.com/equip/framework/blob/master/src/Configuration/ConfigurationSet.php"><code>ConfigurationSet</code></a> class, which takes in a list of configuration classes and applies them to an injector instance.</p>
+<p>For a Equip application to function properly, the <code>Injector</code> instance it uses will need some configuration. This configuration is defined using the <a href="https://github.com/equip/framework/blob/master/src/Application.php"><code>Application</code></a> <code>setConfiguration()</code> method, which accepts an array of configuration classes or objects to be applied. It is also possible to provide a <code>ConfigurationSet</code> when calling <code>Application::build()</code> to be used as the default set.</p>
+<h3 id="default-configuration">Default Configuration</h3>
+<p>The following configurations are typically used by default:</p>
+<ul>
+<li><a href="https://github.com/equip/framework/blob/master/src/Configuration/AurynConfiguration.php"><code>AurynConfiguration</code></a> - Use the <code>Injector</code> instance as a singleton and to resolve <a href="https://github.com/pmjones/adr#controller-vs-action">actions</a></li>
+<li><a href="https://github.com/equip/framework/blob/master/src/Configuration/DiactorosConfiguration.php"><code>DiactorosConfiguration</code></a> - Use <a href="https://github.com/zendframework/zend-diactoros/">Diactoros</a> for the framework <a href="http://www.php-fig.org/psr/psr-7/">PSR-7</a> implementation</li>
+<li><a href="https://github.com/equip/framework/blob/master/src/Configuration/PayloadConfiguration.php"><code>PayloadConfiguration</code></a> - Use the default Equip class as the implementation for <a href="https://github.com/equip/adr/blob/master/src/PayloadInterface.php"><code>PayloadInterface</code></a></li>
+<li><a href="https://github.com/equip/framework/blob/master/src/Configuration/RelayConfiguration.php"><code>RelayConfiguration</code></a> - Use <a href="http://relayphp.com">Relay</a> for the framework middleware dispatcher</li>
+<li><a href="https://github.com/equip/framework/blob/master/src/Configuration/WhoopsConfiguration.php"><code>WhoopsConfiguration</code></a> - Use <a href="http://filp.github.io/whoops/">Whoops</a> for handling exceptions</li>
+</ul>
+<h3 id="optional-configurations">Optional Configurations</h3>
+<p>The following configurations are available but not used by default:</p>
+<ul>
+<li><a href="https://github.com/equip/framework/blob/master/src/Configuration/EnvConfiguration.php"><code>EnvConfiguration</code></a> - Use <a href="https://github.com/josegonzalez/php-dotenv">Dotenv</a> to populate the content of <a href="https://github.com/equip/framework/blob/master/src/Env.php"><code>Env</code></a></li>
+<li><a href="https://github.com/equip/framework/blob/master/src/Configuration/PlatesResponderConfiguration.php"><code>PlatesResponderConfiguration</code></a> - Use <a href="http://platesphp.com/">Plates</a> as the default <a href="#responders">responder</a></li>
+</ul>
+<h4 id="setting-the-env-file">Setting The Env File</h4>
+<p>When using <code>EnvConfiguration</code> it may be desirable to define the path to the <code>.env</code> file if it is outside of your project root or simply to avoid automatic detection. This can be done by providing a constructed instance of the <code>EnvConfiguration</code> during bootstrapping:</p>
+<pre><code class="php">Equip\Application::build()
+-&gt;setConfiguration([
+    new Equip\Configuration\EnvConfiguration('path/to/.env'),
+    // ...
+])
+// ...
+</code></pre>
+
+<p><em>See the <a href="#bootstrap">bootstrap</a> section for more details.</em></p>
+<h3 id="env-configuration">Env Configuration</h3>
+<p>Equip comes with a <a href="https://github.com/equip/framework/blob/master/src/Env.php"><code>Env</code></a> class that can be used as a configuration store. Populating this value object is typically done with an "env loader" such as <a href="https://github.com/josegonzalez/dotenv"><code>josegonzalez/dotenv</code></a>. Once configured this class can be injected into other configuration to use secrets like database passwords or API access tokens.</p>
+<p>The <code>Env</code> class is immutable and can used as an array:</p>
+<pre><code class="php">public function __construct(Env $env)
+{
+    $this-&gt;user = $env['db']['username'];
+    $this-&gt;pass = $env['db']['password'];
+}
+</code></pre>
+
+<h2 id="bootstrap">Bootstrap</h2>
+<p>Configure your web server to use <code>web</code> or the equivalent as the host document root and to route all non-file requests to the <code>index.php</code> file contained there. The <a href="http://silex.sensiolabs.org/doc/web_servers.html">Symfony documentation</a> has some good examples of how to do this for commonly used web servers.</p>
+<p>Here's an example of what this <code>index.php</code> file might look like.</p>
+<pre><code class="php">require __DIR__ . '/../vendor/autoload.php';
+
+Equip\Application::build()
+-&gt;setConfiguration([
+    Equip\Configuration\AurynConfiguration::class,
+    Equip\Configuration\DiactorosConfiguration::class,
+    Equip\Configuration\PayloadConfiguration::class,
+    Equip\Configuration\RelayConfiguration::class,
+    Equip\Configuration\WhoopsConfiguration::class,
+])
+-&gt;setMiddleware([
+    Relay\Middleware\ResponseSender::class,
+    Equip\Handler\ExceptionHandler::class,
+    Equip\Handler\DispatchHandler::class,
+    Equip\Handler\JsonContentHandler::class,
+    Equip\Handler\FormContentHandler::class,
+    Equip\Handler\ActionHandler::class,
+])
+-&gt;setRouting(function (Equip\Directory $directory) {
+    return $directory
+    -&gt;get(/* ... */)
+    // ...
+    ;
+})
+-&gt;run();
+</code></pre>
+
+<p>Let's walk through the role of each block.</p>
+<h3 id="autoloader">Autoloader</h3>
+<p>Hopefully you're already familiar with Composer and the <a href="https://getcomposer.org/doc/01-basic-usage.md#autoloading">autoloader it generates</a>. This is included first to allow for autoloading of code from Equip and its dependencies as well as code specific to your project.</p>
+<p>Composer creates the <code>vendor</code> directory, downloads all project dependencies into it, and generates an autoloader at the path <code>vendor/autoload.php</code>. Since the bootstrap file is located under the <code>web</code> directory, this file must be referenced in relation to that directory when it is included.</p>
+<h3 id="dependency-injection-container">Dependency Injection Container</h3>
+<p><a href="#configuration">Configuration</a> was discussed in an earlier section. In addition to the configurations supported by the Equip core, custom configurations specific to your project can also be applied.</p>
+<p>First, create one or more classes implementing <a href="https://github.com/equip/framework/blob/master/src/Configuration/ConfigurationInterface.php"><code>ConfigurationInterface</code></a> to apply configuration appropriate for your project dependencies.</p>
+<pre><code class="php">// src/Configuration/FooConfiguration.php
+namespace Acme\Configuration;
+
+use Auryn\Injector;
+use Equip\Configuration\ConfigurationInterface;
+
+class FooConfiguration implements ConfigurationInterface
+{
+    public function apply(Injector $injector)
+    {
+        // ...
+    }
+}
+</code></pre>
+
+<p>Now you can apply the configuration you've created in your bootstrap file:</p>
+<pre><code class="php">require __DIR__ . '/../vendor/autoload.php';
+
+Equip\Application::build()
+-&gt;setConfiguration([
+    // ...
+    Acme\Configuration\FooConfiguration::class,
+])
+// ...
+-&gt;run();
+</code></pre>
+
+<h3 id="routing">Routing</h3>
+<p>Equip uses <a href="https://github.com/nikic/FastRoute">FastRoute</a> internally for routing. As such, it uses that library's URI pattern syntax; see <a href="https://github.com/nikic/FastRoute#defining-routes">its documentation</a> for more details.</p>
+<p>The directory maps URIs to the corresponding <a href="https://github.com/pmjones/adr#model-vs-domain">domain</a> that the should be used. This is implemented in the Equip <a href="https://github.com/equip/framework/blob/master/src/Directory.php"><code>Directory</code></a> class. Here is an example of what configuring an instance of it could look like:</p>
+<pre><code class="php">use Acme\Domain;
+
+Equip\Application::build()
+// ...
+-&gt;setRouting(function (Equip\Directory $directory) {
+    return $directory
+    -&gt;get('/providers', Domain\GetProviders::class)
+    -&gt;get('/providers/{provider}', Domain\GetProvider::class)
+    -&gt;post('/providers/{provider}', Domain\SynchronizeProvider::class)
+    -&gt;post('/providers/{provider}/connection', Domain\ActivateProvider::class)
+    -&gt;delete('/providers/{provider}/connection', Domain\DeactivateProvider::class)
+    -&gt;get('/providers/{provider}/configuration', Domain\GetProviderConfiguration::class)
+    -&gt;put('/providers/{provider}/configuration', Domain\ChangeProviderConfiguration::class)
+    ; // End of routing
+})
+-&gt;run();
+</code></pre>
+
+<p><em>It is very important to remember that <strong>the <code>Directory</code> object is immutable</strong>! You must <strong>always</strong> return the directory or changes will be lost.</em></p>
+<p>It is also possible to provide an <a href="https://github.com/equip/framework/blob/master/src/Action.php"><code>Action</code></a> object instead of a domain class if you want to modify the responder or input class that will be used to handle the action:</p>
+<pre><code class="php">$directory-&gt;get('/login', new Equip\Action(
+    Domain\Login::class,
+    Acme\Responder::class,
+    Acme\Input::class
+));
+</code></pre>
+
+<p>If an <code>Action</code> object is not provided one will be constructed with the provided <code>Domain</code> reference instead.</p>
+<h4 id="object-routing">Object Routing</h4>
+<p>An alternative way to implement routing configuration involves using an <a href="http://php.net/manual/en/language.oop5.magic.php#object.invoke">invokable</a> object. This encapsulation allows for niceties such as non-public methods that can make routing code more concise.</p>
+<pre><code class="php">// src/Routing.php
+namespace Acme;
+
+use Acme\Domain;
+use Equip\Directory;
+
+class Routing
+{
+    public function __invoke(Directory $directory)
+    {
+        return $directory
+        -&gt;get('/providers', Domain\GetProviders::class)
+        -&gt;get('/providers/{provider}', Domain\GetProvider::class)
+        -&gt;post('/providers/{provider}', Domain\SynchronizeProvider::class)
+        -&gt;post('/providers/{provider}/connection', Domain\ActivateProvider::class)
+        -&gt;delete('/providers/{provider}/connection', Domain\DeactivateProvider::class)
+        -&gt;get('/providers/{provider}/configuration', Domain\GetProviderConfiguration::class)
+        -&gt;put('/providers/{provider}/configuration', Domain\ChangeProviderConfiguration::class)
+        ; // End of routing
+    }
+}
+</code></pre>
+
+<p>Now you can use this class to provide routing:</p>
+<pre><code class="php">use Acme\Domain;
+
+Equip\Application::build()
+// ...
+-&gt;setRouting(Acme\Routing::class);
+</code></pre>
+
+<h3 id="middleware">Middleware</h3>
+<p><a href="http://relayphp.com/">Relay</a> is the recommended middleware dispatcher to use with Equip. It <a href="http://relayphp.com/#resolvers">creates instances of middleware classes</a> and <a href="http://relayphp.com/#middleware-logic">invokes them</a> in a chain-like fashion. A consequence of this invocation approach is that the order in which middlewares are specified can be important.</p>
+<p>For example, in the <code>setMiddleware()</code> call shown earlier, the <a href="https://github.com/equip/framework/blob/master/src/Handler/ExceptionHandler.php"><code>ExceptionHandler</code></a> -- the Equip handler for dealing with exceptions -- is specified fairly early in the class list contained within its constructor. This is to allow exceptions thrown by any subsequent middlewares in the chain to be handled properly.</p>
+<p>For a Equip application to handle requests properly it will require some middleware to be defined using the <a href="https://github.com/equip/framework/blob/master/src/Application.php"><code>Application</code></a> <code>setMiddleware</code> method, which accepts an array of middleware classes to be used. It is also possible to provide a <code>MiddlewareSet</code> when calling <code>Application::build()</code> to be used as the default set.</p>
+<h4 id="default-middleware">Default Middleware</h4>
+<p>The following middlewares are typically used by default, in this order:</p>
+<ul>
+<li><a href="https://github.com/relayphp/Relay.Middleware/blob/master/src/ResponseSender.php"><code>Relay\Middleware\ResponseSender</code></a> - Outputs data from the <a href="https://github.com/php-fig/http-message/blob/master/src/ResponseInterface.php">PSR-7 Response object</a> to be sent back to the client</li>
+<li><a href="https://github.com/equip/framework/blob/master/src/Handler/ExceptionHandler.php"><code>Equip\Handler\ExceptionHandler</code></a> - Handles exceptions thrown by subsequent middlewares and domains by returning an appropriate application-level response</li>
+<li><a href="https://github.com/equip/framework/blob/master/src/Handler/RouteHandler.php"><code>Equip\Handler\RouteHandler</code></a> - Resolves the request route to the corresponding action to execute</li>
+<li><a href="https://github.com/equip/framework/blob/master/src/Handler/ContentHandler.php"><code>Equip\Handler\ContentHandler</code></a> - Parses request bodies encoded in common formats and makes the parsed version available via the <code>getParsedBody()</code> method of the <a href="https://github.com/php-fig/http-message/blob/master/src/ServerRequestInterface.php">PSR-7 Request object</a></li>
+<li><a href="https://github.com/equip/framework/blob/master/src/Handler/ActionHandler.php"><code>Equip\Handler\ActionHandler</code></a> - Invokes the <a href="https://github.com/pmjones/adr#model-vs-domain">domain</a> corresponding to the resolved <a href="https://github.com/pmjones/adr#controller-vs-action">action</a>, applies the <a href="https://github.com/pmjones/adr#view-vs-responder">responder</a> to the resulting payload, and returns the resulting response</li>
+</ul>
+<h4 id="custom-middleware">Custom Middleware</h4>
+<p>Custom middleware can also be used to further customize application behavior by creating an invokable class:</p>
+<pre><code class="php">namespace Acme;
+
+use Psr\Http\Message\ServerRequestInterface;
+use Psr\Http\Message\ResponseInterface;
+
+class FooMiddleware
+{
+    public function __invoke(
+        RequestInterface $request,
+        ResponseInterface $response,
+        callable $next
+    ) {
+        // ...
+        return $next($request, $response);
+    }
+}
+</code></pre>
+
+<p>Now you can use the middleware you've created in your bootstrap file:</p>
+<pre><code class="php">require __DIR__ . '/../vendor/autoload.php';
+
+Equip\Application::build()
+// ...
+-&gt;setMiddleware([
+    // ...
+    Acme\Middleware\FooMiddleware::class,
+    // ...
+])
+// ...
+-&gt;run();
+</code></pre>
+
+<p><em>Typically you will want to place your custom middleware immediately before the <code>ActionHandler</code>.</em></p>
+<h2 id="domains">Domains</h2>
+<p><a href="https://github.com/pmjones/adr#model-vs-domain">Domain</a> classes are the application entry point into your project-specific code. They implement <a href="https://github.com/equip/domain/blob/master/src/DomainInterface.php"><code>DomainInterface</code></a>, which contains a single method <code>__invoke()</code> that takes in an array and returns an instance of a class implementing <a href="https://github.com/equip/domain/blob/master/src/PayloadInterface.php"><code>PayloadInterface</code></a>.</p>
+<p>The array accepted by <code>__invoke()</code> is created internally via the Equip <a href="https://github.com/equip/adr/blob/master/src/Input.php"><code>Input</code></a> class, which aggregates data from the request in a fashion similar to how PHP itself aggregates request data into the <a href="http://php.net/manual/en/reserved.variables.request.php"><code>$_REQUEST</code></a> superglobal.</p>
+<p>Equip provides a native implementation of <a href="https://github.com/equip/domain/blob/master/src/PayloadInterface.php"><code>PayloadInterface</code></a> in the form of its <a href="https://github.com/equip/framework/blob/master/src/Payload.php"><code>Payload</code></a> class. Once the domain class has returned the payload instance, Equip then passes it off to the appropriate <a href="https://github.com/pmjones/adr#view-vs-responder">responder</a> to be used in constructing the application response.</p>
+<p>Rather than having the domain class directly instantiate <a href="https://github.com/equip/framework/blob/master/src/Payload.php"><code>Payload</code></a> or another implementation of <a href="https://github.com/equip/domain/blob/master/src/PayloadInterface.php"><code>PayloadInterface</code></a>, it's recommended that you make domain classes accept an initial payload instance as a constructor parameter, ideally <a href="http://php.net/manual/en/functions.arguments.php#functions.arguments.type-declaration">typehinted</a> against <a href="https://github.com/equip/domain/blob/master/src/PayloadInterface.php"><code>PayloadInterface</code></a>. This allows domains to be unit tested independently of any particular payload implementation.</p>
+<p>Here's an example of a domain class.</p>
+<pre><code class="php">namespace Acme\Domain;
+
+use Equip\Adr\DomainInterface;
+use Equip\Adr\PayloadInterface;
+
+class Foo implements DomainInterface
+{
+    protected $pdo;
+    protected $payload;
+
+    public function __construct(
+        \PDO $pdo,
+        PayloadInterface $payload
+    ) {
+        $this-&gt;pdo = $pdo;
+        $this-&gt;payload = $payload;
+    }
+
+    public function __invoke(array $input)
+    {
+        // ...
+        return $this-&gt;payload;
+    }
+}
+</code></pre>
+
+<p>Note that the constructor of this domain class declares two parameters, a <code>\PDO</code> instance and a payload instance. If a request is made for the URI corresponding to this domain class in the <a href="#router">router configuration</a>, Equip will use the <a href="#dependency-injection-container">Auryn configuration</a> to instantiate the domain class with the dependencies declared in its constructor. Typically, the constructor is used to store references to dependencies in instance properties so as to be able to use them later in <code>__invoke()</code>.</p>
+<p>Also note that <code>__invoke()</code> returns the payload. The core Equip implementation <a href="https://github.com/equip/framework/blob/master/src/Payload.php"><code>Payload</code></a> provides an immutable implementation of <a href="https://github.com/equip/adr/blob/master/src/PayloadInterface.php"><code>PayloadInterface</code></a>, which also allows for code like this:</p>
+<pre><code class="php">return $this-&gt;payload
+    -&gt;withStatus(Payload::OK)
+    -&gt;withOutput(['foo' =&gt; 'bar']);
+</code></pre>
+
+<h2 id="responders">Responders</h2>
+<p><a href="https://github.com/pmjones/adr#view-vs-responder">Responders</a> accept the payload returned by the domain and return a <a href="https://github.com/php-fig/http-message/blob/master/src/ResponseInterface.php">PSR-7 Response object</a>. They implement <a href="https://github.com/equip/adr/blob/master/src/ResponderInterface.php"><code>ResponderInterface</code></a>, which like <a href="https://github.com/equip/domain/blob/master/src/DomainInterface.php"><code>DomainInterface</code></a> declares a single method <code>__invoke()</code>. Instead of a third callable parameter, however, it receives an instance of <a href="https://github.com/equip/domain/blob/master/src/PayloadInterface.php"><code>PayloadInterface</code></a>.</p>
+<p>Equip provides a few native responder implementations.</p>
+<h3 id="chained-responder">Chained Responder</h3>
+<p><a href="https://github.com/equip/framework/blob/master/src/Responder/ChainedResponder.php"><code>ChainedResponder</code></a> is the default responder which allows multiple responders to be applied to the same response instance. This is intended to allow for <a href="https://en.wikipedia.org/wiki/Separation_of_concerns">separation of concerns</a> in configuring different areas of the response. The <code>ChainedResponder</code> extends <a href="https://github.com/destruktphp/destrukt/blob/master/src/Set.php"><code>Destrukt\Set</code></a>.</p>
+<p>By default <a href="https://github.com/equip/framework/blob/master/src/Responder/ChainedResponder.php"><code>ChainedResponder</code></a> includes <a href="https://github.com/equip/framework/blob/master/src/Responder">all the default responders</a>. Responders can be added using its <code>withValue()</code> method or overwritten entirely using its <code>withData()</code> method.</p>
+<h3 id="formatted-responder">Formatted Responder</h3>
+<p><a href="https://github.com/equip/framework/blob/master/src/Responder/FormattedResponder.php"><code>FormattedResponder</code></a> uses the <a href="https://github.com/willdurand/negotiation">Negotiation</a> library to support <a href="https://en.wikipedia.org/wiki/Content_negotiation">content negotiation</a>. When a desirable format has been founded, it uses an appropriate implementation of <a href="https://github.com/equip/framework/blob/master/src/Formatter/AbstractFormatter.php"><code>AbstractFormatter</code></a> to encode the payload data and return it as a string. The <code>FormattedResponder</code> extends <a href="https://github.com/destruktphp/destrukt/blob/master/src/Dictionary.php"><code>Destrukt\Dictionary</code></a>.</p>
+<p>Here are the formatter implementations that are natively supported:</p>
+<ul>
+<li><a href="https://github.com/equip/framework/blob/master/src/Formatter/JsonFormatter.php"><code>JsonFormatter</code></a> - Encodes the payload as <a href="http://www.json.org/">JSON</a></li>
+<li><a href="https://github.com/equip/framework/blob/master/src/Formatter/PlatesFormatter.php"><code>PlatesFormatter</code></a> - Applies the payload data to a <a href="http://platesphp.com/">Plates</a> template specified in the payload and returns the result</li>
+</ul>
+<p>By default <a href="https://github.com/equip/framework/blob/master/src/Responder/FormattedResponder.php"><code>FormattedResponder</code></a> includes <code>JsonFormatter</code>. Responders can be added using its <code>withValue()</code> method or overwritten entirely using its <code>withData()</code> method.</p>
+<h3 id="redirect">Redirect</h3>
+<p><a href="https://github.com/equip/framework/blob/master/src/Responder/RedirectResponder.php"><code>RedirectResponder</code></a> allows a redirection to be embedded in the payload. In order to activate it requires a <code>redirect</code> message to be attached to the <a href="https://github.com/equip/adr/blob/master/src/PayloadInterface.php"><code>PayloadInterface</code></a>. Optionally the <code>status</code> can be set when a <a href="https://en.wikipedia.org/wiki/HTTP_302"><code>302 Found</code></a> is not the correct response.</p>
+<p>Modifying the payload to trigger a redirect is very easy:</p>
+<pre><code class="php">// For a basic redirect
+return $payload-&gt;withMessages([
+    'redirect' =&gt; '/login',
+]);
+
+// For a permanent redirect, also set &quot;status&quot;
+return $payload-&gt;withMessages([
+    'redirect' =&gt; '/permalink',
+    'status' =&gt; 301,
+]);
+</code></pre>
+
+<h3 id="default-setup">Default Setup</h3>
+<p>Actions, responders, and formatters work together to generate a response. By default <code>Action</code> instances created by <a href="#routing">routing</a> use <a href="https://github.com/equip/framework/blob/master/src/Responder/ChainedResponder.php"><code>ChainedResponder</code></a> as the responder. By using a custom action you can change the responder for that action. By default the <a href="https://github.com/equip/framework/blob/master/src/Responder/ChainedResponder.php"><code>ChainedResponder</code></a> includes the <a href="https://github.com/equip/framework/blob/master/src/Responder/FormattedResponder.php"><code>FormattedResponder</code></a> which delegates formatting to <a href="https://github.com/equip/framework/blob/master/src/Formatter/JsonFormatter.php"><code>JsonFormatter</code></a>.</p>
+<h3 id="using-plates">Using Plates</h3>
+<p>Using <a href="https://github.com/equip/framework/blob/master/src/Formatter/PlatesFormatter.php"><code>PlatesFormatter</code></a> requires changing the formatters used by <a href="https://github.com/equip/framework/blob/master/src/Responder/FormattedResponder.php"><code>FormattedResponder</code></a>. The easiest way to do this is by using the <code>PlatesResponderConfiguration</code> as in the example below:</p>
+<pre><code class="php">Equip\Application::build()
+-&gt;setConfiguration([
+    // ...
+    Equip\Configuration\PlatesResponderConfiguration
+])
+// ...
+</code></pre>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="auth/" class="btn btn-neutral float-right" title="Authentication"/>Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+	  
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> Read the Docs</span>
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+    </div>
+  </div>
+
+</body>
+</html>
+
+<!--
+MkDocs version : 0.14.0
+Build Date UTC : 2016-01-08 16:47:56.181568
+-->

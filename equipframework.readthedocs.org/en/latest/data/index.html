@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Data - Equip Framework</title>
+  
+
+  <link rel="shortcut icon" href="../img/favicon.ico">
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../css/highlight.css">
+  <link href="https://media.readthedocs.org/css/badge_only.css" rel="stylesheet">
+  <link href="https://media.readthedocs.org/css/readthedocs-doc-embed.css" rel="stylesheet">
+
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Data";
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js"></script>
+  <script src="../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../js/highlight.pack.js"></script>
+  <script src="../js/theme.js"></script> 
+  <script src="../readthedocs-data.js"></script>
+  <script src="../readthedocs-dynamic-include.js"></script>
+  <script src="https://media.readthedocs.org/javascript/readthedocs-doc-embed.js"></script>
+
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Equip Framework</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        <ul class="current">
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="..">Framework</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../auth/">Authentication</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 current">
+        <a class="current" href="./">Data</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#data">Data</a></li>
+                
+                    <li><a class="toctree-l4" href="#basic-example">Basic Example</a></li>
+                
+                    <li><a class="toctree-l4" href="#usage">Usage</a></li>
+                
+                    <li><a class="toctree-l4" href="#additional-features">Additional Features</a></li>
+                
+            
+            </ul>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../commands/">Commands</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../session/">Session</a>
+        
+    </li>
+<li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Equip Framework</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Data</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="data">Data</h1>
+<p><a href="https://github.com/equip/data">equip/data</a> is an optional library for creating a data layer in Equip applications.</p>
+<h2 id="basic-example">Basic Example</h2>
+<pre><code class="php">namespace Acme;
+
+use Equip\Data\EntityInterface;
+use Equip\Data\Traits\EntityTrait;
+
+class User implements EntityInterface
+{
+    use EntityTrait;
+
+    private $id;
+    private $email;
+    private $password;
+    private $registered_on;
+
+    private function types()
+    {
+        return [
+            'id' =&gt; 'int',
+        ];
+    }
+}
+</code></pre>
+
+<p>The <code>EntityTrait</code> is a composition of all of the available traits:</p>
+<ul>
+<li><code>ImmutableValueObjectTrait</code></li>
+<li><code>DateAwareTrait</code></li>
+<li><code>JsonAwareTrait</code></li>
+<li><code>SerializeAwareTrait</code></li>
+</ul>
+<h2 id="usage">Usage</h2>
+<p>The properties of classes <code>ImmutableObjectValueTrait</code> will be publicly accessible but read only:</p>
+<pre><code class="php">$user = new User([
+    'id' =&gt; 1,
+    ...
+]);
+
+echo $user-&gt;id; // 1
+</code></pre>
+
+<p>These objects can only be modified by copying the object using <code>withData</code>:</p>
+<pre><code class="php">$user = $user-&gt;withData([
+    'email' =&gt; 'user@example.com',
+]);
+</code></pre>
+
+<p>To check if an entity has a value, use the <code>has</code> method:</p>
+<pre><code class="php">$user-&gt;has('email'); // true
+$user-&gt;has('role'); // false
+</code></pre>
+
+<p><em>Note that this a check to see if the entity has a property defined. It will return <code>true</code>
+even if the value is currently <code>null</code> or otherwise empty.</em></p>
+<p>To get an array of values from the object, use the <code>toArray</code> method:</p>
+<pre><code class="php">$data = $user-&gt;toArray();
+</code></pre>
+
+<h2 id="additional-features">Additional Features</h2>
+<p>The <code>EntityTrait</code> will allow an entity to be passed to <code>json_encode</code>. It can also be
+passed through <code>serialize</code> and <code>unserialize</code>.</p>
+<p>Properties that represent dates can be fetched as <a href="http://carbon.nesbot.com/"><code>Carbon</code></a>
+objects by using the <code>date</code> method:</p>
+<pre><code class="php">$registered = $user-&gt;date('registered_on'); // Carbon
+</code></pre>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../commands/" class="btn btn-neutral float-right" title="Commands"/>Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../auth/" class="btn btn-neutral" title="Authentication"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+	  
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> Read the Docs</span>
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+    </div>
+  </div>
+
+</body>
+</html>
