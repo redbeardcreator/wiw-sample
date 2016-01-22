@@ -20,5 +20,8 @@
             "php --run \"touch('.env');\""
         ]
     },
-    "minimum-stability": "dev"
+    "minimum-stability": "dev",
+    "require-dev": {
+        "phpunit/phpunit": "^5.1"
+    }
 }
