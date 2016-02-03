@@ -23,6 +23,8 @@ Equip\Application::build()
 ])
 ->setRouting(function (Equip\Directory $directory) {
     return $directory
+        ->get('/employees/{id:\d+}/shifts', Domain\EmployeeShifts::class) // List shifts for employee {id}
+        ->get('/employees', Domain\Employees::class) // List employees (with filters in query string)
     ->get('/hello[/{name}]', Domain\Hello::class)
     ->post('/hello[/{name}]', Domain\Hello::class)
     ; // End of routing
