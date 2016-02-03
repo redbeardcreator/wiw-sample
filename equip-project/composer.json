@@ -1,21 +1,25 @@
 {
-    "name": "equip/project",
-    "description": "A sample project for building an application using Equip.",
+    "name": "redbeardcreator/wiw-sample-equip",
+    "description": "Equip implementation of When I Work's sample project by Michael Johnson (@redbeardcreator)",
     "type": "project",
     "license": "MIT",
     "require": {
-        "equip/framework": "^1.0",
-        "league/plates": "^3.1"
+        "equip/framework": "^1.0"
     },
     "autoload": {
         "psr-4": {
             "Equip\\Project\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Equip\\Project\\": "test/"
+        }
+    },
     "authors": [
         {
-            "name": "Daniel Olfelt",
-            "email": "dolfelt@gmail.com"
+            "name": "Michael Johnson",
+            "email": "redbeardcreator@gmail.com"
         }
     ],
     "require-dev": {
